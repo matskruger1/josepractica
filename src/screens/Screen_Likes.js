@@ -1,12 +1,12 @@
-/* import React, {Component} from 'react';
-import { StyleSheet, Text, View,TouchableOpacity } from 'react-native';
+import React, {Component} from 'react';
+import { StyleSheet, Text, View,TouchableOpacity, FlatList } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {CardMini} from "../components/CardMini";
 
 
 
 
-export default class Screen_Likes extends Component (){
+export default class Screen_Likes extends Component{
     constructor() {
         super();
         this.state = {
@@ -17,8 +17,7 @@ export default class Screen_Likes extends Component (){
 
       componentDidMount(){
         this.unsubscribe = this.props.navigation.addListener("focus",()=>{
-          this.getObjectStorage()
-    
+          this.getObjectStorage();    
         })
       };
     
@@ -39,26 +38,21 @@ export default class Screen_Likes extends Component (){
         keyExtractor = (item, idx) => idx.toString();
         renderItem = ({item}) => {
        return(
-   
-
         <View> 
           <CardMini
           name={item.name} 
           image={item.image}/>
-        </View>
-     
+        </View>     
          )
        }
      
    
      render (){
        return (
-       <View>
-   
+       <View>   
            <View >
              <Text>Personajes Likeados</Text>
-           </View>
-   
+           </View>   
            <View >
                <FlatList
                data={this.state.likes}
@@ -76,4 +70,4 @@ export default class Screen_Likes extends Component (){
     
     
     
-     */
+    

@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View,TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View,TouchableOpacity, Image } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {getUser} from "../api/rickandmorty";
 
 
 
 
-export default class Screen_Home extends Component (){
-    constructor() {
-        super();
+export default class Screen_Home extends Component{
+    constructor(props) {
+        super(props);
         this.state = {
           show: {},
           likes:[],
@@ -70,10 +70,9 @@ export default class Screen_Home extends Component (){
 
 
 render(){
-        
-    const values =
-        <View  style={{backgroundColor: 'grey', borderWidth: 5, margin: 3}}>
-            <Image source={{uri:this.state.show.image}} style={{width: 150, height: 150, }}/>
+    const values = 
+        <View style={{backgroundColor: 'grey', borderWidth: 5, margin: 3}}>
+             <Image source={{uri:this.state.show.image}} style={{width: 150, height: 150, }}/>
             <Text>
                 Nombre: {this.state.show.name}
             </Text>
@@ -82,34 +81,23 @@ render(){
             </Text>
             <Text>
                 Status: {this.state.show.status}
-            </Text>
-            
+            </Text>          
             <TouchableOpacity onPress={() => this.savePerson(this.state.show) }><Text>Guardar</Text></TouchableOpacity>
-            <TouchableOpacity onPress={() => this.deleteCard() }> <Text>Descartar</Text> </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.deleteCard() }><Text>Descartar</Text></TouchableOpacity>
+         </View>
 
+    const error = <View>
+                    <Text>No hay mas tarjetas </Text>
+                  </View>
+    let mostrar = null;
+    if(this.state.contador < 672)
+      mostrar = values;
+    else
+      mostrar = error;
 
-        </View>
-        
 return (
 <View style={styles.container}>
-{ this.state.contador < 672
-    ?
-    <View>
-    {values}
-    </View>
-
-    :
-
-      <View>
-      <Text>No hay mas tarjetas </Text>
-      </View>
-
-      
-     }
-      
-  
-
-    
+  { values }
 </View>
 );
 }

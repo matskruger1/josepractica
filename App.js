@@ -1,17 +1,17 @@
-
+import 'react-native-gesture-handler';
 import React, {Component} from 'react';
 import {StyleSheet, Text, View } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import {Screen_Home} from "./src/screens/Screen_Home";
-import {Screen_Likes} from "./src/screens/Screen_Likes";
-import 'react-native-gesture-handler';
+import Screen_Home from "./src/screens/Screen_Home";
+import Screen_Likes from "./src/screens/Screen_Likes";
 
 
 
-const Drawer= createDrawerNavigator();
 
-export default class App extends Component() {
+const Drawer = createDrawerNavigator();
+
+export default class App extends Component {
   
   render(){
     return (
@@ -21,9 +21,8 @@ export default class App extends Component() {
 							drawerPosition="left">
           <Drawer.Screen name= 'Eleccion de Personajes' component={Screen_Home}/>
           <Drawer.Screen name= 'Personajes Likeados' component={Screen_Likes}/> 
-      </Drawer.Navigator>
+        </Drawer.Navigator>
       </NavigationContainer>
-     
     );
     }
   }
