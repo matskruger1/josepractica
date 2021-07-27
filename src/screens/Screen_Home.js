@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View,TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, Text, View,TouchableOpacity, Image, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {getUser} from "../api/rickandmorty";
 
@@ -13,7 +13,6 @@ export default class Screen_Home extends Component{
           show: {},
           likes:[],
           contador:1,
-          dislikes:[]
         }
       }
       
@@ -37,7 +36,7 @@ export default class Screen_Home extends Component{
     async savePerson(item){
         try{
          const JsonValue= await AsyncStorage.getItem("@likes")
-         if (jsonValue !== null){
+         if (JsonValue !== null){
          const jsonParsed = JSON.parse(JsonValue)
          this.setState ({likes:jsonParsed})
          }
@@ -90,14 +89,14 @@ render(){
                     <Text>No hay mas tarjetas </Text>
                   </View>
     let mostrar = null;
-    if(this.state.contador < 672)
+    if(this.state.contador <= 672)
       mostrar = values;
     else
       mostrar = error;
 
 return (
 <View style={styles.container}>
-  { values }
+  { mostrar }
 </View>
 );
 }

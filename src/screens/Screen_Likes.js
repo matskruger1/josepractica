@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, View,TouchableOpacity, FlatList } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {CardMini} from "../components/CardMini";
+import CardMini from "../components/CardMini";
 
 
 
@@ -10,7 +10,6 @@ export default class Screen_Likes extends Component{
     constructor() {
         super();
         this.state = {
-          show: {},
           likes:[],
         }
       }
@@ -41,7 +40,8 @@ export default class Screen_Likes extends Component{
         <View> 
           <CardMini
           name={item.name} 
-          image={item.image}/>
+          image={item.image}
+          />
         </View>     
          )
        }
@@ -52,7 +52,8 @@ export default class Screen_Likes extends Component{
        <View>   
            <View >
              <Text>Personajes Likeados</Text>
-           </View>   
+           </View>  
+
            <View >
                <FlatList
                data={this.state.likes}
